@@ -1,5 +1,4 @@
 import NavBar from "@/components/NavBar";
-import { ShoppingCart } from "lucide-react";
 
 export default function Home() {
   return (
