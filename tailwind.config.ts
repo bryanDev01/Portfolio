@@ -11,7 +11,13 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        baseColor: "#2688ff",
+        secondColor: "#5e00c8"
       },
+      backgroundColor: {
+        baseBGColor: "#2688ff",
+        secondBGColor: "#5e00c8"
+      }
     },
   },
   plugins: [],
