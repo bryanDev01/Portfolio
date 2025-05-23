@@ -330,7 +330,7 @@ export default function Home() {
 
         <div className=" w-full h-full flex lg:flex-row flex-col justify-center items-start gap-8">
           {/* Contact information card - Contains email and social links */}
-          <div className=" lg:w-1/3 w-full lg:h-[416px] flex flex-col gap-6 justify-center lg:items-start items-start sm:items-center bg-white rounded-lg p-6 shadow-lg shadow-cyan-300">
+          <div className=" lg:w-1/3 w-full lg:h-[480px] flex flex-col gap-6 justify-between lg:items-start items-start sm:items-center bg-white rounded-lg p-6 shadow-lg shadow-cyan-300">
             <div className=" w-full h-full flex flex-col items-start gap-6">
               <p className=" w-full font-semibold lg:text-2xl sm:text-xl text-lg sm:text-center lg:text-left">
                 Contact Information
