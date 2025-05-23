@@ -10,6 +10,7 @@ interface Email {
 }
 
 function ContactForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<Email>({
     name: "",
     mail: "",
@@ -19,8 +20,7 @@ function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    console.log("Estos son los datos que seran enviados", formData)
+    setIsSubmitting(true);
 
     try {
       const response = await fetch("/api/send", {
@@ -32,17 +32,28 @@ function ContactForm() {
       });
       console.log(response)
       if (response.ok) {
-        alert("Message sent successfully!");
+        const successMessage = document.createElement('div');
+        successMessage.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg transform transition-all duration-500 ease-in-out';
+        successMessage.textContent = 'Message sent successfully!';
+        document.body.appendChild(successMessage);
+        setTimeout(() => successMessage.remove(), 3000);
         setFormData({ name: "", mail: "", subject: "", message: "" });
       } else {
-        alert("Failed to send message.");
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg transform transition-all duration-500 ease-in-out';
+        errorMessage.textContent = 'Failed to send message.';
+        document.body.appendChild(errorMessage);
+        setTimeout(() => errorMessage.remove(), 3000);
       }
     } catch (error: unknown) {
       if(error instanceof Error) {
-        alert("An error occurred. Please try again.");
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg transform transition-all duration-500 ease-in-out';
+        errorMessage.textContent = 'An error occurred. Please try again.';
+        document.body.appendChild(errorMessage);
+        setTimeout(() => errorMessage.remove(), 3000);
         console.error("Error del cliente", error.message)
       }
-      console.log(error)
     }
   };
 
@@ -54,7 +65,7 @@ function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className=" lg:w-4/6 w-full h-full flex flex-col justify-center items-start lg:gap-3 gap-5 p-6 bg-white rounded-lg shadow-lg shadow-cyan-300">
+    <form onSubmit={handleSubmit} className="lg:w-4/6 w-full h-full flex flex-col justify-center items-start lg:gap-3 gap-5 p-6 bg-white rounded-lg shadow-lg shadow-cyan-300 transform transition-all duration-300 hover:shadow-xl hover:shadow-cyan-400">
       <p className=" lg:text-2xl sm:text-xl text-lg font-semibold">
         Send Message
       </p>
@@ -66,7 +77,7 @@ function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             id="name"
-            className=" rounded-lg p-2 w-full border border-slate-300 outline-none"
+            className="rounded-lg p-2 w-full border border-slate-300 outline-none focus:ring-2 focus:ring-cyan-300 focus:border-transparent transition-all duration-300"
             placeholder="Name.."
           />
         </div>
@@ -77,7 +88,7 @@ function ContactForm() {
             id="mail"
             value={formData.mail}
             onChange={handleChange}
-            className=" rounded-lg p-2 w-ful border border-slate-300 outline-none"
+            className=" rounded-lg p-2 w-full border border-slate-300 outline-none focus:ring-2 focus:ring-cyan-300 focus:border-transparent transition-all duration-300"
             placeholder="Name@gmail.com.."
           />
         </div>
@@ -89,7 +100,7 @@ function ContactForm() {
           id="subject"
           value={formData.subject}
           onChange={handleChange}
-          className=" rounded-lg p-2 w-full border border-slate-300 outline-none"
+          className="rounded-lg p-2 w-full border border-slate-300 outline-none focus:ring-2 focus:ring-cyan-300 focus:border-transparent transition-all duration-300"
           placeholder="Project Inquiry.."
         />
       </div>
@@ -99,11 +110,11 @@ function ContactForm() {
           id="message"
           value={formData.message}
           onChange={handleChange}
-          className=" rounded-lg p-2 w-full border border-slate-300 outline-none"
+          className="rounded-lg p-2 w-full border border-slate-300 outline-none focus:ring-2 focus:ring-cyan-300 focus:border-transparent transition-all duration-300"
           placeholder="Your message here.."
         />
       </div>
-      <button className=" border border-slate-300 hover:bg-baseColor p-2 text-center text-sm lg:text-lg rounded-lg">
+      <button disabled={isSubmitting} className={`border border-slate-300 p-2 text-center text-sm lg:text-lg rounded-lg transform transition-all duration-300 ${isSubmitting ? 'bg-gray-300 cursor-not-allowed' : 'hover:bg-baseColor hover:text-white hover:scale-105 hover:shadow-md'}`}>
         Send Message
       </button>
     </form>

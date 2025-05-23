@@ -1,3 +1,5 @@
+import { Server, Code, Cpu, Terminal } from "lucide-react";
+
 export function Bars({ newClassName }: { newClassName: string }) {
   return (
     <svg
@@ -97,7 +99,6 @@ export function JsSVG({ className }: { className: string }) {
     </svg>
   );
 }
-
 
 export function ToolsSVG({ className }: { className: string }) {
   return (
@@ -241,3 +242,5 @@ export function XSVG({ className }: { className: string }) {
     </svg>
   );
 }
+
+export const Icons = [<Server key={0} className="h-8 w-8 text-rose-600" />, <Code key={1} className="h-8 w-8 text-indigo-600" />, <Cpu key={2} className="h-8 w-8 text-purple-600" />, <Terminal key={3} className="h-8 w-8 text-emerald-600" />];

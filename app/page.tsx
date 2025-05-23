@@ -1,88 +1,34 @@
 "use client";
 
 import { GitHubSVG, LinkedInSVG, XSVG } from "@/components/icons/icons";
-import { projects } from "@/data/data";
+import { projects, skills } from "@/data/data";
 import NavBar from "@/components/NavBar";
 import ProjectCard from "@/components/ProjectCard";
-import {
-  ArrowRight,
-  ChevronRight,
-  Server,
-  Briefcase,
-  Mail,
-  User,
-  Code,
-  Cpu,
-  Terminal,
-} from "lucide-react";
+import { ArrowRight, ChevronRight, Briefcase, Mail, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import { useInView } from "@/hooks/useInView";
+import Image from "next/image";
 
-export const skills = {
-  frontend: {
-    icon: <Code className="h-8 w-8 text-indigo-600" />,
-    title: "Frontend Development",
-    description:
-      "Building beautiful, responsive user interfaces with modern web technologies",
-    skills: [
-      { name: "React", level: 90 },
-      { name: "TypeScript", level: 85 },
-      { name: "JavaScript", level: 95 },
-      { name: "Python", level: 65 },
-      { name: "HTML5", level: 90 },
-      { name: "CSS3/SCSS", level: 85 },
-    ],
-  },
-  frameworks: {
-    icon: <Cpu className="h-8 w-8 text-purple-600" />,
-    title: "Frameworks & Libraries",
-    description: "Leveraging powerful tools to create scalable applications",
-    skills: [
-      { name: "Tailwind CSS", level: 95 },
-      { name: "Zustand", level: 80 },
-      { name: "Next.js", level: 85 },
-      { name: "Angular.js", level: 45 },
-      { name: "Astro", level: 35 },
-      { name: "Django", level: 60 },
-      { name: "Shad Cn UI", level: 80 },
-    ],
-  },
-  backend: {
-    icon: <Server className="h-8 w-8 text-rose-600" />, // Asume que tienes un ícono "Server"
-    title: "Backend & Databases",
-    description: "Server-side solutions and data management",
-    skills: [
-      { name: "Supabase", level: 75 },
-      { name: "Strapi", level: 75 },
-      { name: "PostgreSQL", level: 90 },
-      { name: "MongoDB", level: 65 },
-      { name: "Prisma", level: 70 },
-    ],
-  },
-  tools: {
-    icon: <Terminal className="h-8 w-8 text-emerald-600" />,
-    title: "Tools & Others",
-    description: "Mastering development tools and workflows",
-    skills: [
-      { name: "Git/GitHub", level: 90 },
-      { name: "Vite", level: 85 },
-      { name: "Figma", level: 85 },
-      { name: "Docker", level: 70 },
-      { name: "Jest", level: 50 },
-    ],
-  },
-};
-
+/**
+ * Home Component - Main landing page of the portfolio
+ * Includes sections: Home, About, Skills, Projects, and Contact
+ * Features intersection observer for section highlighting
+ */
 export default function Home() {
+  // State to track which section is currently active in the viewport
   const [activeSection, setActiveSection] = useState<string>("Home");
+
+  // Setup intersection observers for each section to handle scroll-based navigation
+
   const { ref: homeRef } = useInView({ threshold: 0.4 }, "Home");
   const { ref: aboutRef } = useInView({ threshold: 0.4 }, "About");
   const { ref: skillsRef } = useInView({ threshold: 0.4 }, "Skills");
   const { ref: projectsRef } = useInView({ threshold: 0.4 }, "Projects");
   const { ref: contactRef } = useInView({ threshold: 0.4 }, "Contact");
 
+  // Event listener setup for section visibility changes
   useEffect(() => {
     const handleSectionVisible = (e: CustomEvent) => {
       setActiveSection(e.detail);
@@ -101,6 +47,10 @@ export default function Home() {
     };
   }, []);
 
+  /**
+   * Handles smooth scrolling to a section when clicked in the navigation
+   * @param id - The ID of the section to scroll to
+   */
   const changeActiveSection = (id: string) => {
     setActiveSection(id);
     const elementActive = document.getElementById(id);
@@ -117,6 +67,7 @@ export default function Home() {
         activeSectionID={activeSection}
       />
 
+      {/* Hero Section - Introduction and call-to-action */}
       <section
         id="Home"
         className=" flex lg:flex-row flex-col-reverse gap-10 bg-gradient-to-b from-white to-slate-200 w-full items-center justify-center pt-28 pb-2 px-4"
@@ -132,8 +83,8 @@ export default function Home() {
           </h1>
           <p className=" lg:text-xl sm:text-lg text-sm py-3 text-gray-600">
             {" "}
-            Welcome to my online portfolio! Here, you'll find a collection of my
-            frontend development projects, showcasing{" "}
+            Welcome to my online portfolio! Here, you&apos;ll find a collection
+            of my frontend development projects, showcasing{" "}
             <b>responsive designs, interactive web applications</b>, and{" "}
             <b>user-centric</b> solutions. Each project reflects my ability to
             blend technical expertise with creativity, turning ideas into{" "}
@@ -157,15 +108,19 @@ export default function Home() {
         </div>
         <div className=" lg:w-1/2 w-full">
           <div className=" w-full h-5/6 flex justify-center items-center ">
-            <img
+            <Image
               src="/Side.jpg"
               alt="devPhoto"
+              width={500}
+              height={500}
+              priority
               className=" shadow-md shadow-slate-200 border-2 border-slate-200 rounded-full w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] lg:w-[380px] lg:h-[380px] object-cover"
             />
           </div>
         </div>
       </section>
 
+      {/* About Section - Personal introduction and background */}
       <section
         id="About"
         className=" w-full h-full pt-28 px-4 bg-gradient-to-b from-slate-200 to-cyan-200 flex flex-col gap-10 justify-center items-center"
@@ -183,10 +138,13 @@ export default function Home() {
           <div className="w-2/6 flex justify-center items-center">
             <div className=" bg-baseColor transform rotate-6 w-fit h-[200px] sm:h-[350px] lg:h-[400px] rounded-lg shadow-lg shadow-cyan-300">
               <div className=" bg-violet-600 transform -rotate-6 w-full h-full rounded-lg ">
-                <img
+                <Image
                   src="/Bryan.jpeg"
                   alt="hero-image"
-                  className=" object-cover w-full h-full rounded-lg"
+                  width={400}
+                  height={400}
+                  className="object-cover w-full h-full rounded-lg"
+                  priority
                 />
               </div>
             </div>
@@ -197,13 +155,13 @@ export default function Home() {
                 Who I am?
               </h3>
               <p className=" lg:text-xl sm:text-lg text-sm text-pretty text-gray-600">
-                <b>Hello!</b> I'm a passionate junior web developer with strong
-                problem-solving skills and an insatiable thirst for learning. As
-                a self-taught programmer, I've built multiple personal projects
-                that have helped me solidify my core web development skills. I'm
-                eager to join a development team where I can contribute my
-                knowledge while continuing to grow professionally in a
-                collaborative environment.
+                <b>Hello!</b> I&apos;m a passionate junior web developer with
+                strong problem-solving skills and an insatiable thirst for
+                learning. As a self-taught programmer, I&apos;ve built multiple
+                personal projects that have helped me solidify my core web
+                development skills. I&apos;m eager to join a development team
+                where I can contribute my knowledge while continuing to grow
+                professionally in a collaborative environment.
               </p>
             </div>
             <div className=" flex flex-col sm:flex-row gap-2 justify-between items-center lg:gap-8 py-4">
@@ -225,8 +183,8 @@ export default function Home() {
                 <span className=" flex justify-center items-center gap-2 text-lg hover:text-black rounded-lg p-2 cursor-pointer ">
                   <GitHubSVG className=" w-6 h-6" />
                   <p className="lg:text-lg text-sm">
-                    <Link href="https://github.com/komikoh01" target="Blank">
-                      https://github.com/komikoh01
+                    <Link href="https://github.com/bryanDev01" target="Blank">
+                      https://github.com/bryanDev01
                     </Link>
                   </p>
                 </span>
@@ -236,6 +194,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Skills Section - Technical expertise and tools */}
       <section
         id="Skills"
         className=" w-full h-full bg-gradient-to-b from-cyan-200 to-white px-4 pt-28 flex flex-col justify-center items-center gap-10"
@@ -317,6 +276,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Projects Section - Portfolio of work */}
       <section
         id="Projects"
         className=" bg-gradient-to-b from-white to-slate-200 pt-28 flex flex-col gap-10"
@@ -329,6 +289,7 @@ export default function Home() {
           <div className=" bg-secondColor rounded-md xl:w-20 lg:w-10 sm:w-9 w-8 h-1"></div>
         </div>
 
+        {/* Project cards grid - Responsive layout that adjusts based on screen size */}
         <div className=" flex flex-col md:grid xl:grid-cols-3 md:grid-cols-2 md:gap-5 gap-8 p-4">
           {Object.entries(projects).map(([key, project]) => (
             <ProjectCard
@@ -339,7 +300,7 @@ export default function Home() {
               stack={project.stack}
               description={project.description}
               gitHref={project.gitHref}
-              pageHref={project.gitHref}
+              pageHref={project.pageHref}
             />
           ))}
         </div>
@@ -350,6 +311,7 @@ export default function Home() {
         </button>
       </section>
 
+      {/* Contact Section - Get in touch form and contact information */}
       <section
         id="Contact"
         className=" w-full h-full bg-gradient-to-b from-slate-200 to-cyan-200 px-12 pt-28 pb-12 flex flex-col justify-center items-center gap-8"
@@ -367,6 +329,7 @@ export default function Home() {
         </div>
 
         <div className=" w-full h-full flex lg:flex-row flex-col justify-center items-start gap-8">
+          {/* Contact information card - Contains email and social links */}
           <div className=" lg:w-1/3 w-full lg:h-[416px] flex flex-col gap-6 justify-center lg:items-start items-start sm:items-center bg-white rounded-lg p-6 shadow-lg shadow-cyan-300">
             <div className=" w-full h-full flex flex-col items-start gap-6">
               <p className=" w-full font-semibold lg:text-2xl sm:text-xl text-lg sm:text-center lg:text-left">
@@ -393,7 +356,7 @@ export default function Home() {
             <div className=" flex flex-col items-start gap-3">
               <p className=" text-lg font-semibold">Follow Me</p>
               <div className=" flex justify-start items-center gap-4">
-                <Link href="https://github.com/komikoh01" target="Blank">
+                <Link href="https://github.com/bryanDev01" target="Blank">
                   <GitHubSVG className=" w-8" />
                 </Link>
                 <Link

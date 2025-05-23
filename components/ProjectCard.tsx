@@ -21,18 +21,18 @@ export function ProjectCard({
   pageHref: string;
 }) {
   return (
-    <section className=" shadow-lg shadow-cyan-200 bg-gradient-to-b from-cyan-100 to-white w-full h-full flex flex-col items-center text-lg rounded-lg">
-      <div className=" w-full h-[300px] overflow-hidden rounded-t-lg ">
+    <section className="group shadow-lg shadow-cyan-200 hover:shadow-xl hover:shadow-cyan-300 bg-gradient-to-b from-cyan-100 to-white w-full h-full flex flex-col items-center text-lg rounded-lg transition-all duration-300 transform hover:-translate-y-1">
+      <div className="w-full h-[300px] overflow-hidden rounded-t-lg relative group-hover:after:opacity-100 after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-black/50 after:to-transparent after:opacity-0 after:transition-opacity after:duration-300">
         <img
           src={src}
           alt={`Imagen del proyecto relacionado a ${src}`}
-          className=" w-full h-full object-cover hover:scale-105 transition-transform duration-300 rounded-t-lg"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 rounded-t-lg"
         />
       </div>
 
-      <div className=" flex flex-col justify-center items-center gap-4 p-4">
-        <div className=" w-full flex justify-between items-center">
-          <p className=" lg:text-2xl text-xl font-bold">{name}</p>
+      <div className="flex flex-col justify-center items-center gap-4 p-4 w-full">
+        <div className="w-full flex justify-between items-center">
+          <p className="lg:text-2xl text-xl font-bold bg-gradient-to-r from-baseColor to-secondColor bg-clip-text text-transparent">{name}</p>
           <span className=" flex justify-center items-center">
             {stars === 2 ? (
               <>
@@ -76,14 +76,18 @@ export function ProjectCard({
             </p>
           ))}
         </div>
-        <div className=" w-full flex justify-start items-center gap-4">
-          <Link href={gitHref} target="Blank">
+        <div className="w-full flex flex-wrap justify-start items-center gap-4">
+          <Link href={gitHref} target="Blank" className="transform transition-all duration-300 hover:scale-110 hover:text-secondColor">
             <GitHubSVG className="w-8" />
           </Link>
 
-          <Link href={pageHref} target="Blank">
-            <ArrowOut className=" w-8" />
+          <Link href={pageHref} target="Blank" className="transform transition-all duration-300 hover:scale-110 hover:text-secondColor">
+            <ArrowOut className="w-8" />
           </Link>
+
+          <a href={pageHref} target="_blank" rel="noopener noreferrer" className="ml-auto px-4 py-2 bg-gradient-to-r from-baseColor to-secondColor text-white rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-md text-sm">
+            View Live Demo
+          </a>
         </div>
       </div>
     </section>

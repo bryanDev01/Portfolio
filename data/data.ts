@@ -6,6 +6,8 @@ import {
   WorkflowIcon,
 } from "lucide-react";
 
+import { Icons } from "@/components/icons/icons";
+
 export const navLinks = [
   { id: "Home", link: "Home", icon: Home },
   { id: "About", link: "About", icon: FileQuestion },
@@ -26,8 +28,8 @@ export const projects = {
       { id: 2, tec: "TypeScript" },
       { id: 3, tec: "Tailwind CSS" },
     ],
-    gitHref: "https://github.com/komikoh01/Virtual-Library",
-    pageHref: "empty",
+    gitHref: "https://github.com/bryanDev01/Virtual-Library",
+    pageHref: "https://atom-lib.netlify.app/",
   },
   project2: {
     src: "/ToDo.jpg",
@@ -42,7 +44,62 @@ export const projects = {
       { id: 4, tec: "Prisma ORM" },
       { id: 5, tec: "Postgre SQL" },
     ],
-    gitHref: "https://github.com/komikoh01/Virtual-Library",
-    pageHref: "empty",
+    gitHref: "https://github.com/bryanDev01/Virtual-Library",
+    pageHref: "https://to-do-app-seven-dun.vercel.app/",
+  },
+};
+
+export const skills = {
+  frontend: {
+    icon: Icons[0],
+    title: "Frontend Development",
+    description:
+      "Building beautiful, responsive user interfaces with modern web technologies",
+    skills: [
+      { name: "React", level: 90 },
+      { name: "TypeScript", level: 85 },
+      { name: "JavaScript", level: 95 },
+      { name: "Python", level: 65 },
+      { name: "HTML5", level: 90 },
+      { name: "CSS3/SCSS", level: 85 },
+    ],
+  },
+  frameworks: {
+    icon: Icons[1],
+    title: "Frameworks & Libraries",
+    description: "Leveraging powerful tools to create scalable applications",
+    skills: [
+      { name: "Tailwind CSS", level: 95 },
+      { name: "Zustand", level: 80 },
+      { name: "Next.js", level: 85 },
+      { name: "Angular.js", level: 45 },
+      { name: "Astro", level: 35 },
+      { name: "Django", level: 60 },
+      { name: "Shad Cn UI", level: 80 },
+    ],
+  },
+  backend: {
+    icon: Icons[2], // Asume que tienes un ícono "Server"
+    title: "Backend & Databases",
+    description: "Server-side solutions and data management",
+    skills: [
+      { name: "Supabase", level: 75 },
+      { name: "Strapi", level: 75 },
+      { name: "PostgreSQL", level: 90 },
+      { name: "MongoDB", level: 65 },
+      { name: "Prisma", level: 70 },
+    ],
+  },
+  tools: {
+    icon: Icons[3],
+    title: "Tools & Others",
+    description: "Mastering development tools and workflows",
+    skills: [
+      { name: "Git/GitHub", level: 90 },
+      { name: "Vite", level: 85 },
+      { name: "Figma", level: 85 },
+      { name: "Docker", level: 70 },
+      { name: "Jest", level: 50 },
+    ],
   },
 };
