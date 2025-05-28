@@ -263,7 +263,7 @@ export default function Home() {
             <div className="inline-flex items-center justify-center space-x-2 text-sm text-indigo-600">
               <span className="lg:text-lg text-sm font-semibold text-pretty">
                 <Link
-                  href="https://github.com/komikoh01"
+                  href="https://github.com/bryanDev01"
                   target="Blank"
                   className=" hover:text-indigo-950"
                 >
@@ -305,7 +305,7 @@ export default function Home() {
           ))}
         </div>
         <button className=" self-center w-52 lg:w-[300px] border-2 border-baseColor hover:text-white hover:bg-secondColor hover:border-transparent p-2 text-center text-sm md:text-lg rounded-lg">
-          <Link href="https://github.com/komikoh01" target="Blank">
+          <Link href="https://github.com/bryanDev01" target="Blank">
             View All Projects
           </Link>
         </button>
