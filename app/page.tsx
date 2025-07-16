@@ -251,8 +251,8 @@ export default function Home() {
                         'Git/GitHub': 'bg-gray-100 text-gray-800',
                         'Figma': 'bg-pink-100 text-pink-800',
                         'Docker': 'bg-blue-200 text-blue-900',
-                      };
-                      const colorClass = techColors[skill.name] || 'bg-slate-100 text-slate-800';
+                      } as const;
+                      const colorClass = techColors[skill.name as keyof typeof techColors] || 'bg-slate-100 text-slate-800';
                       return (
                         <li key={skill.name} className={`px-3 py-1 rounded-full text-sm font-semibold shadow-sm ${colorClass}`}>
                           {skill.name}
