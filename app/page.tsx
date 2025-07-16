@@ -228,28 +228,38 @@ export default function Home() {
                 </p>
 
                 <div className="space-y-4">
-                  {category.skills.map((skill) => (
-                    <div key={skill.name} className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium">
+                  <ul className="flex flex-wrap gap-2">
+                    {category.skills.map((skill) => {
+                      // Mapeo de colores por tecnología
+                      const techColors = {
+                        'React': 'bg-cyan-100 text-cyan-800',
+                        'TypeScript': 'bg-blue-100 text-blue-800',
+                        'JavaScript': 'bg-yellow-100 text-yellow-800',
+                        'HTML5': 'bg-orange-100 text-orange-800',
+                        'CSS3': 'bg-blue-50 text-blue-700',
+                        'Tailwind CSS': 'bg-teal-100 text-teal-800',
+                        'Zustand': 'bg-amber-100 text-amber-800',
+                        'Next.js': 'bg-gray-200 text-gray-800',
+                        'Astro.js': 'bg-orange-50 text-orange-700',
+                        'Shad Cn UI': 'bg-purple-100 text-purple-800',
+                        'Node js': 'bg-lime-100 text-lime-800',
+                        'Express js': 'bg-green-100 text-green-800',
+                        'Supabase': 'bg-emerald-100 text-emerald-800',
+                        'Strapi': 'bg-indigo-100 text-indigo-800',
+                        'PostgreSQL': 'bg-sky-100 text-sky-800',
+                        'Prisma': 'bg-teal-50 text-teal-700',
+                        'Git/GitHub': 'bg-gray-100 text-gray-800',
+                        'Figma': 'bg-pink-100 text-pink-800',
+                        'Docker': 'bg-blue-200 text-blue-900',
+                      };
+                      const colorClass = techColors[skill.name] || 'bg-slate-100 text-slate-800';
+                      return (
+                        <li key={skill.name} className={`px-3 py-1 rounded-full text-sm font-semibold shadow-sm ${colorClass}`}>
                           {skill.name}
-                        </span>
-                        <span className="text-xs text-indigo-600">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transform origin-left transition-transform duration-500 ease-out group-hover:scale-x-100"
-                          style={{
-                            width: `${skill.level}%`,
-                            transform: "scaleX(0.8)",
-                            transformOrigin: "left",
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </div>
               </div>
             ))}
