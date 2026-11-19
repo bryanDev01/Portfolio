@@ -18,18 +18,20 @@ export const navLinks = [
 
 export const projects = {
   project1: {
-    src: "/VL.jpg",
-    name: "Virtual Library",
-    stars: 3,
+    src: "/Inventario.jpg",
+    name: "Inventario",
+    stars: 4,
     description:
-      "A React-based book organizer with a list of available books and a customizable reading list. Users can filter by genre, see real-time counters, and move books between lists. Data persists in local storage, and changes sync across browser tabs without a backend.",
+      "Full-stack inventory and point-of-sale system: multi-warehouse stock with atomic PostgreSQL transactions (no negative stock under concurrency), role-based auth, sales vouchers in CUP with custom exchange rate, thermal printing, and PDF/Word report exports.",
     stack: [
       { id: 1, tec: "Next JS" },
       { id: 2, tec: "TypeScript" },
       { id: 3, tec: "Tailwind CSS" },
+      { id: 4, tec: "Supabase" },
+      { id: 5, tec: "PostgreSQL" },
     ],
-    gitHref: "https://github.com/bryanDev01/Virtual-Library",
-    pageHref: "https://atom-lib.netlify.app/",
+    gitHref: "https://github.com/bryanDev01/InventarioDemo",
+    pageHref: "https://inventario-demo-two.vercel.app/",
   },
   project2: {
     src: "/ToDo.jpg",
