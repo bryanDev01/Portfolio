@@ -18,17 +18,12 @@ function NavBar({
   const [scrolled, setScrolled] = useState<boolean>(false);
 
   useEffect(() => {
-    const checkScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    checkScroll();
-
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     setIsMounted(true);
 
@@ -39,9 +34,9 @@ function NavBar({
     <nav
       className={`${
         scrolled
-          ? "sticky top-0 py-2 bg-white/80 backdrop-blur-sm shadow-sm w-full flex flex-col gap-6 justify-center items-center p-3 z-50"
-          : "sticky top-0 w-full flex flex-col gap-6 justify-center items-center p-3 shadow-md shadow-white bg-gradient-to-b from-cyan-200 to-white z-50"
-      }`}
+          ? "sticky top-0 py-2 bg-white/70 backdrop-blur-md shadow-md shadow-cyan-200/40"
+          : "sticky top-0 shadow-md shadow-white bg-gradient-to-b from-cyan-200/90 to-white/90 backdrop-blur-sm"
+      } w-full flex flex-col gap-6 justify-center items-center p-3 z-50 transition-all duration-500`}
     >
       <div className="w-full flex items-center justify-between px-4 lg:justify-start lg:gap-3">
         <div className="flex items-center gap-3 w-full">
@@ -69,6 +64,8 @@ function NavBar({
 
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
           className="lg:hidden text-gray-600 hover:text-secondColor transition-colors"
         >
           {isMenuOpen ? (
@@ -83,24 +80,28 @@ function NavBar({
         className={`${isMenuOpen ? "flex" : "hidden"} lg:flex flex-col lg:flex-row w-full lg:w-auto text-black gap-4 lg:gap-8 justify-center items-center text-base sm:text-lg list-none p-4 lg:p-0 ${scrolled ? "bg-white/80 lg:bg-transparent" : "bg-cyan-100/90 lg:bg-transparent"} transition-all duration-300`}
       >
         {navLinks.map((link) => (
-          <button
-            key={link.id}
-            onClick={() => {
-              changeActiveSection(link.id);
-              setIsMenuOpen(false);
-            }}
-            className={`
-              w-full lg:w-auto px-4 py-2 lg:p-0 rounded-lg text-center
-              transition-all duration-300
-              ${
-                activeSectionID === link.id
-                  ? "text-secondColor font-semibold bg-white/50 lg:bg-transparent"
-                  : "hover:text-secondColor hover:bg-white/30 lg:hover:bg-transparent"
-              }
-            `}
-          >
-            {link.link}
-          </button>
+          <li key={link.id} className="w-full lg:w-auto">
+            <button
+              onClick={() => {
+                changeActiveSection(link.id);
+                setIsMenuOpen(false);
+              }}
+              aria-current={activeSectionID === link.id ? "true" : undefined}
+              className={`
+                relative w-full lg:w-auto px-4 py-2 lg:p-0 rounded-lg text-center
+                transition-all duration-300
+                after:content-[''] after:absolute after:left-4 after:right-4 after:-bottom-1 after:h-[3px] after:rounded-full
+                after:bg-gradient-to-r after:from-baseColor after:to-secondColor after:transition-transform after:duration-300 after:origin-left
+                ${
+                  activeSectionID === link.id
+                    ? "text-secondColor font-semibold bg-white/50 lg:bg-transparent after:scale-x-100"
+                    : "hover:text-secondColor hover:bg-white/30 lg:hover:bg-transparent after:scale-x-0 hover:after:scale-x-50"
+                }
+              `}
+            >
+              {link.link}
+            </button>
+          </li>
         ))}
       </ul>
     </nav>
