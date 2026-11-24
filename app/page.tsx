@@ -367,7 +367,7 @@ export default function Home() {
         </Reveal>
 
         {/* Project cards grid - Responsive layout that adjusts based on screen size */}
-        <div className="relative z-10 flex flex-col md:grid xl:grid-cols-3 md:grid-cols-2 md:gap-5 gap-8 p-4">
+        <div className="relative z-10 flex flex-col md:grid md:items-start xl:grid-cols-3 md:grid-cols-2 md:gap-5 gap-8 p-4">
           {Object.entries(projects).map(([key, project], index) => (
             <Reveal key={key} delay={index * 120} className="h-full">
               <ProjectCard
