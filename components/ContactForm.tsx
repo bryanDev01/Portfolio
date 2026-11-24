@@ -92,7 +92,7 @@ function ContactForm() {
       <form
         onSubmit={handleSubmit}
         noValidate
-        className="lg:w-4/6 w-full lg:h-[480px] flex flex-col justify-between items-start lg:gap-3 gap-5 p-6 bg-white/90 backdrop-blur-sm rounded-2xl border border-white ring-1 ring-slate-100 shadow-xl shadow-cyan-300/50 transform transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-400/40"
+        className="w-full lg:h-[480px] flex flex-col justify-between items-start lg:gap-3 gap-5 p-6 bg-white/90 backdrop-blur-sm rounded-2xl border border-white ring-1 ring-slate-100 shadow-xl shadow-cyan-300/50 transform transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-400/40"
       >
         <p className=" lg:text-2xl sm:text-xl text-lg font-semibold">
           Send Message
