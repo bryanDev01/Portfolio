@@ -22,7 +22,7 @@ export function ProjectCard({
   pageHref: string;
 }) {
   return (
-    <section className="group relative shadow-lg shadow-cyan-200/70 hover:shadow-2xl hover:shadow-cyan-300/70 bg-gradient-to-b from-cyan-50 to-white ring-1 ring-slate-100 hover:ring-baseColor/30 w-full h-full flex flex-col items-center text-lg rounded-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden">
+    <section className="group relative shadow-lg shadow-cyan-200/70 hover:shadow-2xl hover:shadow-cyan-300/70 bg-gradient-to-b from-cyan-50 to-white ring-1 ring-slate-100 hover:ring-baseColor/30 w-full flex flex-col items-center text-lg rounded-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden">
       <div className="w-full h-[300px] overflow-hidden rounded-t-2xl relative after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-t after:from-secondColor/40 after:to-transparent after:opacity-0 after:transition-opacity after:duration-500 group-hover:after:opacity-100">
         <Image
           src={src}
