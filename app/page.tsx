@@ -84,6 +84,19 @@ export default function Home() {
     }
   };
 
+  /** Shared markup so both masonry columns render identical cards */
+  const renderProjectCard = (project: (typeof projects)[keyof typeof projects]) => (
+    <ProjectCard
+      src={project.src}
+      name={project.name}
+      stars={project.stars}
+      stack={project.stack}
+      description={project.description}
+      gitHref={project.gitHref}
+      pageHref={project.pageHref}
+    />
+  );
+
   return (
     <main className=" flex flex-col relative">
       <NavBar
@@ -366,21 +379,51 @@ export default function Home() {
           <div className=" bg-gradient-to-r from-baseColor to-secondColor rounded-full xl:w-20 lg:w-10 sm:w-9 w-8 h-1"></div>
         </Reveal>
 
-        {/* Project cards grid - Responsive layout that adjusts based on screen size */}
-        <div className="relative z-10 flex flex-col md:grid md:items-start xl:grid-cols-3 md:grid-cols-2 md:gap-5 gap-8 p-4">
-          {Object.entries(projects).map(([key, project], index) => (
-            <Reveal key={key} delay={index * 120} className="h-full">
-              <ProjectCard
-                src={project.src}
-                name={project.name}
-                stars={project.stars}
-                stack={project.stack}
-                description={project.description}
-                gitHref={project.gitHref}
-                pageHref={project.pageHref}
-              />
-            </Reveal>
-          ))}
+        {/* Project cards - two flex columns; the filler stretches with
+            flex-1 so the masonry fills all the way to the panel bottom */}
+        <div className="relative z-10 w-full px-4">
+          <div className="rounded-3xl bg-gradient-to-b from-white/70 to-cyan-50/60 shadow-xl shadow-cyan-300/40 ring-1 ring-white p-4 sm:p-5">
+            <div className="flex flex-col md:flex-row md:items-stretch gap-5">
+              <div className="flex flex-col gap-5 md:w-1/2">
+                {Object.entries(projects)
+                  .slice(0, 2)
+                  .map(([key, project], index) => (
+                    <Reveal key={key} delay={index * 120}>
+                      {renderProjectCard(project)}
+                    </Reveal>
+                  ))}
+              </div>
+              <div className="flex flex-col gap-5 md:w-1/2">
+                {Object.entries(projects)
+                  .slice(2)
+                  .map(([key, project], index) => (
+                    <Reveal key={key} delay={(index + 2) * 120}>
+                      {renderProjectCard(project)}
+                    </Reveal>
+                  ))}
+
+                {/* Filler card: flex-1 stretches it to close any height
+                    gap and align its bottom with the other column */}
+                <Reveal delay={360} className="flex-1 min-h-[240px]">
+                  <Link
+                    href="https://github.com/bryanDev01?tab=repositories"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/filler h-full flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-baseColor/35 bg-white/50 text-gray-500 hover:border-secondColor/50 hover:text-secondColor hover:bg-white/80 hover:-translate-y-1 transition-all duration-300 p-6 text-center"
+                  >
+                    <Briefcase className="w-8 h-8 opacity-70 group-hover/filler:scale-110 transition-transform duration-300" />
+                    <p className="font-semibold text-lg">More projects</p>
+                    <p className="text-sm text-pretty">
+                      Experiments and work in progress live on my GitHub
+                    </p>
+                    <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-baseColor group-hover/filler:text-secondColor transition-colors duration-300">
+                      View GitHub <ArrowRight className="w-4" />
+                    </span>
+                  </Link>
+                </Reveal>
+              </div>
+            </div>
+          </div>
         </div>
         <Reveal delay={100} className="self-center">
           <button className=" w-52 lg:w-[300px] border-2 border-baseColor text-baseColor font-semibold hover:text-white hover:bg-gradient-to-r hover:from-baseColor hover:to-secondColor hover:border-transparent hover:-translate-y-0.5 hover:shadow-lg hover:shadow-cyan-300/50 active:translate-y-0 p-2 text-center text-sm md:text-lg rounded-xl transition-all duration-300">
