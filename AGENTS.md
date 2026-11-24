@@ -25,5 +25,6 @@ Single-package Next.js 15 (App Router) personal portfolio. No tests, no CI, no l
 - Path alias `@/*` maps to the repo root.
 
 ## Tooling quirks
+- `npm run build` intermittently fails with `PageNotFoundError: Cannot find module for page: /_document` (ENOENT) on this Windows + OneDrive setup — it's a flaky file race, not a code problem. Just run `npm run build` again; it passes. No need to delete `.next`.
 - Node modules pin Next at exactly `15.1.11` (security patch for a React Server Components CVE — see git history). Do not casually downgrade/upgrade Next or React.
 - `.agents/skills/` contains frontend/Next.js best-practice skills; load the relevant one for larger UI or Next.js changes rather than guessing conventions.

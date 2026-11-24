@@ -49,6 +49,23 @@ export const projects = {
     gitHref: "https://github.com/bryanDev01/Virtual-Library",
     pageHref: "https://to-do-app-seven-dun.vercel.app/",
   },
+  project3: {
+    src: "/CostaVerde.png",
+    name: "Costa Verde Social Club",
+    stars: 5,
+    description:
+      "Full-stack reservation & membership platform for a social club (fictitious brand demo of a private client project): HR bulk-employee preloading with CI-validated registration, manual Transfermóvil payment reconciliation, real-time capacity control with pessimistic locking (SELECT ... FOR UPDATE) and weekly reservation limits, signed QR digital membership cards with receptionist check-in, subscription lifecycle with grace-period auto-suspension via cron, admin/HR/reception dashboards, occupancy & revenue report exports, and a white-label branding layer driven entirely by environment variables. Multi-tenant PostgreSQL on Aiven, JWT role-based access.",
+    stack: [
+      { id: 1, tec: "Next JS" },
+      { id: 2, tec: "TypeScript" },
+      { id: 3, tec: "Tailwind CSS" },
+      { id: 4, tec: "Express JS" },
+      { id: 5, tec: "Node JS" },
+      { id: 6, tec: "PostgreSQL" },
+    ],
+    gitHref: "https://github.com/bryanDev01/CostaVerde-SocialClub-demo",
+    pageHref: "https://am-social-club-frontend.vercel.app/",
+  },
 };
 
 export const skills = {
